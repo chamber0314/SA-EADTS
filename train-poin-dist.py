@@ -93,7 +93,6 @@ def train_step(loader,testloader,epoch,val=False):
             feature1, cls_feature1, new1,classify1 = model(trainData)
             feature2, cls_feature2, new2,_ = model(testset.trainData)
             b, d = cls_feature1.shape
-            # 计算子域中心和对应伪标签 初始域中心都为0
             with torch.no_grad():
                 mu1, d_label1 = utils.get_featureMu(feature1, torch.softmax(cls_feature1, dim=-1), args.K,device)
                 mu2, d_label2 = utils.get_featureMu(feature2, torch.softmax(cls_feature2, dim=-1), args.K,device)
